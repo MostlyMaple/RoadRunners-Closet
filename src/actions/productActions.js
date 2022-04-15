@@ -14,7 +14,7 @@ export const listProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
-        const { data } = await axios.get('http://34.123.91.205/get-items/')
+        const { data } = await axios.get('http://34.68.45.4/api/get-items/')
 
         dispatch({ 
             type: PRODUCT_LIST_SUCCESS, 
@@ -35,7 +35,7 @@ export const listProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`http://34.123.91.205/get-item/${id}`)
+        const { data } = await axios.get(`http://34.68.45.4/api/get-item/${id}`)
 
         dispatch({ 
             type: PRODUCT_DETAILS_SUCCESS, 

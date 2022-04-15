@@ -9,7 +9,7 @@ import Message  from '../components/Message';
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 
-function LoginScreen({ location, history}) {
+function LoginScreen({ location, history }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
