@@ -1,20 +1,38 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { productListReducer, productDetailsReducer } from './reducers/productReducers'
+import { productListReducer, productDetailsReducer, productDeleteReducer, productCreateReducer, productUpdateReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
-import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducers'
-import { orderCreateReducer } from './reducers/orderReducers'
+import { 
+    userLoginReducer, 
+    userRegisterReducer, 
+    userDetailsReducer, 
+    userUpdateProfileReducer, 
+    userListReducer, 
+    userDeleteReducer,
+    userUpdateReducer,
+} from './reducers/userReducers'
+import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderListAllReducer } from './reducers/orderReducers'
 
 const reducer = combineReducers({
     productList: productListReducer, 
     productDetails: productDetailsReducer, 
+    productDelete: productDeleteReducer,
+    productCreate: productCreateReducer,
+    productUpdate: productUpdateReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     cart: cartReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
+    userDelete: userDeleteReducer,
+    userList: userListReducer,
+    userUpdate: userUpdateReducer,
     orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
+    orderListMy: orderListMyReducer,
+    orderListAll: orderListAllReducer,
+
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?
@@ -26,11 +44,15 @@ const userInfoFromStorage = localStorage.getItem('userInfo') ?
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ?
         JSON.parse(localStorage.getItem('shippingAddress')) : { }
 
+const discountCodeFromStorage = localStorage.getItem('discountCode') ?
+        JSON.parse(localStorage.getItem('discountCode')) : { }
+
 const initialState = {
     cart:
     { 
         cartItems: cartItemsFromStorage, 
-        shippingAddress: shippingAddressFromStorage
+        shippingAddress: shippingAddressFromStorage,
+        discountCode: discountCodeFromStorage,
     },
     userLogin:{userInfo: userInfoFromStorage},
 }

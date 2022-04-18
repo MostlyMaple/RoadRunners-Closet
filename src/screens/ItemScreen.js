@@ -14,6 +14,7 @@ function ItemScreen({ match, history}) {
     const {error, loading, product} = productDetails
     const [qty, setQty] = useState(1)
 
+    
     useEffect(() => {
         dispatch(listProductDetails(match.params.id))
     }, [dispatch, match.params.id])

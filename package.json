@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "proxy": "http://35.224.232.15",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,7 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "react": "^18.0.0",
-    "react-bootstrap": "^2.2.3",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^18.0.0",
     "react-redux": "^7.2.8",
     "react-router": "^6.3.0",

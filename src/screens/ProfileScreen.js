@@ -1,12 +1,14 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Col, Row, Button, Form } from 'react-bootstrap';
+import { Col, Row, Button, Form, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 import Loader  from '../components/Loader';
 import Message  from '../components/Message';
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
+import { listMyOrders } from '../actions/orderActions'
+import { Link } from 'react-router-dom';
 
 function ProfileScreen({ history }) {
     const [name, setName] = useState('')
@@ -27,13 +29,20 @@ function ProfileScreen({ history }) {
     const userUpdateProfile = useSelector(state => state.userUpdateProfile)
     const { success } = userUpdateProfile
 
+    const orderListMy = useSelector(state => state.orderListMy)
+    const { loading:loadingOrders, error:errorOrders, orders  } = orderListMy
+
     useEffect(() => {
         if(!userInfo) {
             history.push('/login')
         } else {
-            if (!user || !user.name || success) {
+            if (user) {
+                dispatch(listMyOrders())
+            }
+            if (!user || !user.name || success || userInfo.id !== user.id) {
                 dispatch({ type:USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
+                dispatch(listMyOrders())
             } else {
                 setName(user.name)
                 setEmail(user.email)
@@ -124,6 +133,51 @@ function ProfileScreen({ history }) {
 
         <Col md={9}>
             <h2>My Orders</h2>
+            {loadingOrders ? (
+                <Loader/>
+            ) : errorOrders ? (
+                <Message variant='danger'>{errorOrders}</Message>
+            ) : (
+                <Table striped responsive className='table-sm'>
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                DATE
+                            </th>
+                            <th>
+                                TOTAL
+                            </th>
+                            <th>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {Array.from(orders).map(order => (
+                            <tr key={order.id}>
+                                <td>
+                                    {order.id}
+                                </td>
+                                <td>
+                                    {order.created.substring(0,10)}
+                                </td>
+                                <td>
+                                    {order.totalPrice}
+                                </td>
+                                <td>
+                                    <LinkContainer to={`/order/${order.id}`}>
+                                        <Button className='btn-sm'>Details</Button>
+                                    </LinkContainer>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            )}
         </Col>
     </Row>
   )
