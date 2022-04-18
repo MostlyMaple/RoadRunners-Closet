@@ -60,6 +60,10 @@ function Header({history}) {
                                     <NavDropdown.Item>Products</NavDropdown.Item>
                                 </LinkContainer>
 
+                                <LinkContainer to='/admin/discountlist'>
+                                    <NavDropdown.Item>Discounts</NavDropdown.Item>
+                                </LinkContainer>
+
                                 <LinkContainer to='/admin/orderlist'>
                                     <NavDropdown.Item>Orders</NavDropdown.Item>
                                 </LinkContainer>
