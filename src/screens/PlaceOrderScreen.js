@@ -16,14 +16,21 @@ function PlaceOrderScreen({ history }) {
     const orderCreate = useSelector(state => state.orderCreate)
     const {order, error, success} = orderCreate
     const cart = useSelector(state => state.cart)
+    const { discount } = cart
     
-    
+    const discountCodeFromStorage = localStorage.getItem('discountCode') ?
+        JSON.parse(localStorage.getItem('discountCode')) : { }
 
     cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     cart.shippingPrice = (0).toFixed(2)
     cart.taxPrice = Number(cart.itemsPrice * (.0825)).toFixed(2)
+     
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)).toFixed(2)
-
+    if (discountCodeFromStorage['name']) {
+        cart.discount = ((Number(cart.itemsPrice) + Number(cart.shippingPrice)) * Number(discountCodeFromStorage['discount']))
+        cart.totalPrice = ((Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)) - 
+        (cart.discount)).toFixed(2)
+    }
     if (!cart.paymentMethod) {
         history.push('/payment')
     }
@@ -34,7 +41,7 @@ function PlaceOrderScreen({ history }) {
             history.push(`/order/${order.id}`)
             dispatch({type: ORDER_CREATE_RESET})
         }
-    }, [success, history])
+    }, [success, history, order])
 
     const placeOrder = () => (
         dispatch(createOrder({

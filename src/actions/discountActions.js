@@ -7,7 +7,6 @@ import {
     DISCOUNT_LIST_FAIL,
     DISCOUNT_LIST_SUCCESS,
 
-
     DISCOUNT_DETAILS_REQUEST,
     DISCOUNT_DETAILS_FAIL,
     DISCOUNT_DETAILS_SUCCESS,
@@ -19,12 +18,10 @@ import {
     DISCOUNT_APPLY_REQUEST,
     DISCOUNT_APPLY_FAIL,
     DISCOUNT_APPLY_SUCCESS,
-    DISCOUNT_APPLY_RESET,
 
     DISCOUNT_UPDATE_REQUEST,
     DISCOUNT_UPDATE_FAIL,
     DISCOUNT_UPDATE_SUCCESS,
-    DISCOUNT_UPDATE_RESET,
 } from '../constants/discountConstants'
 
 import axios from 'axios'
@@ -104,11 +101,22 @@ export const deleteDiscount = (id) => async (dispatch, getState) => {
     }
 }
 
-export const listDiscountDetails = (id) => async (dispatch) => {
+export const listDiscountDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({ type: DISCOUNT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/get-discount/${id}`)
+        const { 
+            userLogin: { userInfo },
+         } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+
+        const { data } = await axios.get(`/api/get-discount/${id}`, config)
 
         dispatch({ 
             type: DISCOUNT_DETAILS_SUCCESS, 
@@ -196,6 +204,32 @@ export const listDiscounts = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({ 
             type: DISCOUNT_LIST_FAIL, 
+            payload: error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+}
+
+export const applyDiscount = (name) => async (dispatch) => {
+    try {
+        dispatch({ type: DISCOUNT_APPLY_REQUEST })
+
+        const { data } = await axios.get(
+            `/api/confirm-discount/${name}/`,
+            )
+
+        dispatch({ 
+            type: DISCOUNT_APPLY_SUCCESS, 
+            payload: data,
+        })
+
+
+        localStorage.setItem('discountCode', JSON.stringify(data))
+    } catch (error) {
+        localStorage.removeItem('discountCode')
+        dispatch({ 
+            type: DISCOUNT_APPLY_FAIL, 
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,

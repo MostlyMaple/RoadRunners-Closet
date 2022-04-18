@@ -2,33 +2,42 @@ import React, {useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {useDispatch, useSelector } from 'react-redux'
 import {Row, Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap'
-import  Message  from '../components/Message'
+import  Message from '../components/Message'
+import  Loader from '../components/Loader'
 import { addToCart, removeFromCart, saveDiscountCode } from '../actions/cartActions'
+import { applyDiscount } from '../actions/discountActions'
 
 function CartScreen({match, location, history}) {
     const productId = match.params.id
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
     const dispatch = useDispatch()
 
-    const [discount, setDiscount] = useState('')
+    const [discountName, setDiscountName] = useState('')
 
     const cart = useSelector(state => state.cart)
 
-    const { cartItems, discountCode } = cart
+    const { cartItems } = cart
+
+    const discountApply = useSelector(state => state.discountApply)
+    const {loading, error, success, discount} = discountApply
     
     useEffect(() => {
-        
         if (productId) {
             dispatch(addToCart(productId, qty))
         }
-    }, [dispatch, productId, qty])
+        
+    }, [dispatch, productId, qty, discountApply])
 
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
     }
 
     const submitDiscount = (e) => {
-        dispatch(saveDiscountCode(discount))
+        e.preventDefault()
+        dispatch(applyDiscount(discountName))
+        if (success) {
+            dispatch(saveDiscountCode(discountName))
+        }
     }
 
     const checkoutHandler = () => {
@@ -93,17 +102,32 @@ function CartScreen({match, location, history}) {
                             <h2>({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
                             <h2>Subtotal: ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}</h2>
                             <h2>Tax: ${cartItems.reduce((acc, item) => acc + item.qty * item.price * .0825, 0).toFixed(2)}</h2>
-                            <h2>Total: ${cartItems.reduce((acc, item) => acc + item.qty * item.price * .0825 + item.qty * item.price, 0).toFixed(2)}</h2>
-                            <h2>Discount Code: {discountCode}</h2>
+                            {success ? (
+                                <h2>Total: ${cartItems.reduce((acc, item) => acc + item.qty * item.price * .0825 + item.qty * item.price, 0).toFixed(2)} - 
+                                ${(cartItems.reduce((acc, item) => acc + item.qty * item.price * .0825 + item.qty * item.price, 0) * Number(discount.discount)).toFixed(2)}
+                                = {((cartItems.reduce((acc, item) => acc + item.qty * item.price * .0825 + item.qty * item.price, 0)) -
+                                (cartItems.reduce((acc, item) => acc + item.qty * item.price * .0825 + item.qty * item.price, 0) * Number(discount.discount))).toFixed(2)}</h2>
+                            ) : (
+                                <h2>Total: ${cartItems.reduce((acc, item) => acc + item.qty * item.price * .0825 + item.qty * item.price, 0).toFixed(2)}</h2>
+                            )}
+                            {success ? (
+                                <h4>Discount Code: {discount.name} = %{Number(100) * Number(discount.discount)}</h4>
+                            ) : !discount ? (
+                                <h4>Discount Code: {discount}</h4>
+                            ) : (
+                                <h4>Discount Code:</h4>
+                            )}
                         </ListGroup.Item>
                         <ListGroup.Item>
+                            {error && <Message variant='danger'>{error}</Message>}
+                            {loading && <Loader/>}
                             <Form onSubmit={submitDiscount}>
                                 <Form.Group controlId='name'>
                                     <Form.Control
                                         type='name'
                                         placeholder='Enter Discount Code'
-                                        value={discount}
-                                        onChange={(e) => setDiscount(e.target.value)}
+                                        value={discountName}
+                                        onChange={(e) => setDiscountName(e.target.value)}
                                     >
                                     </Form.Control>
                                 </Form.Group>

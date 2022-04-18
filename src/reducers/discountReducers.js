@@ -133,3 +133,23 @@ export const discountDeleteReducer = (state = {}, action) => {
             return state
     }
 } 
+
+
+export const discountApplyReducer = (state = {discount: {}}, action) => {
+    switch(action.type) {
+        case DISCOUNT_APPLY_REQUEST:
+            return  {loading:true, ...state }
+
+        case DISCOUNT_APPLY_SUCCESS:
+            return { loading:false, discount: action.payload, success: true }
+
+        case DISCOUNT_APPLY_FAIL:
+            return { loading:false, error: action.payload }
+
+        case DISCOUNT_APPLY_RESET:
+                return { discount: {} }
+
+        default:
+            return state
+    }
+} 

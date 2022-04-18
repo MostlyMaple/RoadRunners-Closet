@@ -43,7 +43,7 @@ function UserEditScreen({match, history}) {
                 }
             }
         }
-    }, [discountId, discount, successUpdate, history, dispatch])
+    }, [discountId, discount, successUpdate, history, dispatch, userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault()

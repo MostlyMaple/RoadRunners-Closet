@@ -16,7 +16,7 @@ import {
     ORDER_LIST_ALL_FAIL, 
     ORDER_LIST_ALL_REQUEST,
 } from '../constants/orderConstants'
-
+import { DISCOUNT_APPLY_RESET } from '../constants/discountConstants'
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
 
 
@@ -53,7 +53,13 @@ export const createOrder = (order) => async (dispatch, getState) => {
             payload: data
         })
 
+        dispatch({
+            type: DISCOUNT_APPLY_RESET,
+            payload: data
+        })
+
         localStorage.removeItem('cartItems')
+        localStorage.removeItem('discountCode')
 
     } catch (error) {
         dispatch({
