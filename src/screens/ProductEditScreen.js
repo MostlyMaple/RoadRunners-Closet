@@ -47,7 +47,11 @@ function ProductEditScreen({match, history}) {
             } else {
                 setName(product.item_name)
                 setPrice(product.price)
-                setImage(product.image.replace('/media', ''))
+                if (product.image) {
+                    setImage(product.image.replace('/media', ''))
+                } else {
+                    setImage('/media/640x360.png')
+                }
                 setTopic(product.topic)
                 setStock(product.quantity)
                 setDescription(product.description)

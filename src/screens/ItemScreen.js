@@ -89,7 +89,7 @@ function ItemScreen({ match, history}) {
                                     className="btn-block btn-lg" 
                                     type='button' 
                                     onClick={addToCartHandler}
-                                    disabled={product.quantity === 0}>
+                                    disabled={product.quantity <= 0}>
                                         Add To Cart
                                     </Button>
                                 </ListGroup.Item>
