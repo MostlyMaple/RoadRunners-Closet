@@ -77,7 +77,7 @@ function ProductEditScreen({match, history}) {
               }
           }
 
-          const { data } = await axios.post('/api/upload/', formData, config)
+          const { data } = await axios.post('http://35.224.232.15/api/upload/', formData, config)
 
 
           setImage(data)
