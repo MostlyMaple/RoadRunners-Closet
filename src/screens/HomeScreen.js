@@ -17,6 +17,8 @@ function HomeScreen({ history }) {
 
     const [sortingMethod, setSortingMethod] = useState('')
 
+
+
     useEffect(() => {
         dispatch(listProducts(keyword))
     }, [dispatch, keyword, sortingMethod])
