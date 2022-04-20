@@ -55,7 +55,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const {data} = await axios.post(
-            '/api/users/login/',
+            'http://35.224.232.15/api/users/login/',
             {'username': email, 'password': password},
             config
             )
@@ -100,7 +100,7 @@ export const register = (name, email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            '/api/users/register/',
+            'http://35.224.232.15/api/users/register/',
             { 'name': name, 'email': email, 'password': password },
             config
         )
@@ -146,7 +146,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/api/users/${id}/`,
+            `http://35.224.232.15/api/users/${id}/`,
             config
         )
 
@@ -184,7 +184,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/api/users/profile/update/`,
+            `http://35.224.232.15/api/users/profile/update/`,
             user,
             config
         )
@@ -229,7 +229,7 @@ export const listUsers = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/api/users/`,
+            `http://35.224.232.15/api/users/`,
             config
         )
 
@@ -266,7 +266,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `/api/users/delete/${id}/`,
+            `http://35.224.232.15/api/users/delete/${id}/`,
             config
         )
 
@@ -304,7 +304,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/api/users/update/${user.id}/`,
+            `http://35.224.232.15/api/users/update/${user.id}/`,
             user,
             config
         )

@@ -45,7 +45,7 @@ export const createDiscount = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `/api/create-discount/`,
+            `http://35.224.232.15/api/create-discount/`,
             {},
             config
         )
@@ -83,7 +83,7 @@ export const deleteDiscount = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `/api/delete-discount/${id}/`,
+            `http://35.224.232.15/api/delete-discount/${id}/`,
             config
         )
 
@@ -116,7 +116,7 @@ export const listDiscountDetails = (id) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.get(`/api/get-discount/${id}`, config)
+        const { data } = await axios.get(`http://35.224.232.15/api/get-discount/${id}`, config)
 
         dispatch({ 
             type: DISCOUNT_DETAILS_SUCCESS, 
@@ -151,7 +151,7 @@ export const updateDiscount = (discount) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/api/update-discount/${discount.id}/`,
+            `http://35.224.232.15/api/update-discount/${discount.id}/`,
             discount,
             config
         )
@@ -192,7 +192,7 @@ export const listDiscounts = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/api/get-discounts/`,
+            `http://35.224.232.15/api/get-discounts/`,
             config
             )
 
@@ -216,7 +216,7 @@ export const applyDiscount = (name) => async (dispatch) => {
         dispatch({ type: DISCOUNT_APPLY_REQUEST })
 
         const { data } = await axios.get(
-            `/api/confirm-discount/${name}/`,
+            `http://35.224.232.15/api/confirm-discount/${name}/`,
             )
 
         dispatch({ 

@@ -38,7 +38,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `/api/orders/add/`,
+            `http://35.224.232.15/api/orders/add/`,
             order,
             config
         )
@@ -90,7 +90,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/api/order/${id}/`,
+            `http://35.224.232.15/api/order/${id}/`,
             config
         )
 
@@ -128,7 +128,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/api/orders/get/`,
+            `http://35.224.232.15/api/orders/get/`,
             config
         )
 
@@ -165,7 +165,7 @@ export const listAllOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/api/orders/admin/`,
+            `http://35.224.232.15/api/orders/admin/`,
             config
         )
 
