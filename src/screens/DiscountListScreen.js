@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button, Table, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from "react-router-bootstrap";
@@ -14,10 +14,10 @@ function DiscountListScreen({ history }) {
     const {loading, error, discounts} = discountList
 
     const discountDelete = useSelector(state => state.discountDelete)
-    const {loading: loadingDelete, error: errorDelete, success: successDelete} = discountDelete
+    const {success: successDelete} = discountDelete
 
     const discountCreate = useSelector(state => state.discountCreate)
-    const {loading: loadingCreate, error: errorCreate, success: successCreate, discount: createdDiscount} = discountCreate
+    const {success: successCreate, discount: createdDiscount} = discountCreate
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -55,7 +55,7 @@ function DiscountListScreen({ history }) {
                 <Col>
                     <h1>Discounts</h1>
                 </Col>
-                <Col className='text-right'>
+                <Col className='text-right col-2'>
                     <Button className='my-3' onClick={createDiscountHandler}>
                         <i className='fas fas-plus'></i> Create Discount Code
                     </Button>
@@ -79,7 +79,7 @@ function DiscountListScreen({ history }) {
                                 DISCOUNT
                             </th>
                             <th>
-
+                                EDIT / DELETE
                             </th>
                         </tr>
                     </thead>

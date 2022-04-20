@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from "react-router-bootstrap";
@@ -61,7 +61,7 @@ function UserListScreen({ history }) {
                                 ADMIN
                             </th>
                             <th>
-
+                                EDIT / DELETE
                             </th>
                         </tr>
                     </thead>

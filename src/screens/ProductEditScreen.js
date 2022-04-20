@@ -58,7 +58,7 @@ function ProductEditScreen({match, history}) {
             }
         }
       }
-    }, [product, productId, successUpdate, history, dispatch])
+    }, [product, productId, successUpdate, history, dispatch, userInfo])
 
 
     const uploadFileHandler = async (e) => {

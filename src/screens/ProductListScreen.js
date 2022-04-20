@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button, Table, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from "react-router-bootstrap";
@@ -55,7 +55,7 @@ function ProductListScreen({ history, match }) {
                 <Col>
                     <h1>Products</h1>
                 </Col>
-                <Col className='text-right'>
+                <Col className='text-right col-2'>
                     <Button className='my-3' onClick={createProductHandler}>
                         <i className='fas fas-plus'></i> Create Product
                     </Button>
@@ -85,10 +85,13 @@ function ProductListScreen({ history, match }) {
                                 PRICE
                             </th>
                             <th>
+                                STOCK
+                            </th>
+                            <th>
                                 CATEGORY
                             </th>
                             <th>
-
+                                EDIT / DELETE
                             </th>
                         </tr>
                     </thead>
@@ -103,6 +106,9 @@ function ProductListScreen({ history, match }) {
                                 </td>
                                 <td>
                                     ${item.price}
+                                </td>
+                                <td>
+                                    {item.quantity}
                                 </td>
                                 <td>
                                     {item.topic}

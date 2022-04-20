@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Button, Table,  Navbar, Nav, Container, NavDropdown, Link } from 'react-bootstrap'
-import FormContainer from '../components/FormContainer'
+import { Button, Table,  Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from "react-router-bootstrap";
 import Loader  from '../components/Loader';
@@ -71,7 +70,7 @@ function OrderListScreen({ history }) {
                                 TOTAL
                             </th>
                             <th>
-
+                                DETAILS
                             </th>
                         </tr>
                     </thead>
