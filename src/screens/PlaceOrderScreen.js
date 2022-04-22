@@ -23,7 +23,7 @@ function PlaceOrderScreen({ history }) {
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)).toFixed(2)
 
     if (JSON.stringify(cart.discountCode) !== '{}') {
-        cart.discount = ((Number(cart.itemsPrice) + Number(cart.shippingPrice)) * Number(cart.discountCode.discount))
+        cart.discount = ((Number(cart.itemsPrice) + Number(cart.shippingPrice)) * Number(cart.discountCode.discount)).toFixed(2)
         cart.taxPrice = (((Number(cart.itemsPrice)) - (cart.discount)) * (.0825)).toFixed(2)
         cart.totalPrice = ((Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)) - 
         (cart.discount)).toFixed(2)
@@ -146,6 +146,18 @@ function PlaceOrderScreen({ history }) {
                                 </Row>
                             </ListGroup.Item>
 
+                            {cart.discountCode.discount && 
+                            <ListGroup.Item>
+                                <Row>
+                                    <Col>
+                                    Discount:
+                                    </Col>
+                                    <Col>
+                                    ${cart.discount}
+                                    </Col>
+                                </Row>
+                            </ListGroup.Item>}
+    
                             <ListGroup.Item>
                                 <Row>
                                     <Col>
@@ -156,6 +168,8 @@ function PlaceOrderScreen({ history }) {
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
+                            
+                            
 
                             <ListGroup.Item>
                                 {error && <Message variant='danger'>{error}</Message>}
