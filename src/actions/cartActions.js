@@ -50,8 +50,6 @@ export const saveDiscountCode = (data) => (dispatch) => {
         type:CART_SAVE_DISCOUNT_CODE,
         payload:data,
     })
-
-    localStorage.setItem('discountCode', JSON.stringify(data))
 }
 
 export const savePaymentMethod = (data) => (dispatch) => {

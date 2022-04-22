@@ -35,9 +35,8 @@ function CartScreen({match, location, history}) {
 
     const submitDiscount = (e) => {
         e.preventDefault()
-        dispatch(applyDiscount(discountName))
-        if (success) {
-            dispatch(saveDiscountCode(discountName))
+        if (discountName !== '') {
+            dispatch(applyDiscount(discountName))
         }
     }
 

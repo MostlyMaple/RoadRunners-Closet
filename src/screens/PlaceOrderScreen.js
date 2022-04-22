@@ -16,18 +16,15 @@ function PlaceOrderScreen({ history }) {
     const orderCreate = useSelector(state => state.orderCreate)
     const {order, error, success} = orderCreate
     const cart = useSelector(state => state.cart)
-    const { discount } = cart
-    
-    const discountCodeFromStorage = localStorage.getItem('discountCode') ?
-        JSON.parse(localStorage.getItem('discountCode')) : { }
 
     cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     cart.shippingPrice = (0).toFixed(2)
     cart.taxPrice = Number(cart.itemsPrice * (.0825)).toFixed(2)
-     
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)).toFixed(2)
-    if (discountCodeFromStorage['name']) {
-        cart.discount = ((Number(cart.itemsPrice) + Number(cart.shippingPrice)) * Number(discountCodeFromStorage['discount']))
+
+    if (JSON.stringify(cart.discountCode) !== '{}') {
+        cart.discount = ((Number(cart.itemsPrice) + Number(cart.shippingPrice)) * Number(cart.discountCode.discount))
+        cart.taxPrice = (((Number(cart.itemsPrice)) - (cart.discount)) * (.0825)).toFixed(2)
         cart.totalPrice = ((Number(cart.itemsPrice) + Number(cart.taxPrice) + Number(cart.shippingPrice)) - 
         (cart.discount)).toFixed(2)
     }

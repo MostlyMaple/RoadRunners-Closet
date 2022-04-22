@@ -24,6 +24,10 @@ import {
     DISCOUNT_UPDATE_SUCCESS,
 } from '../constants/discountConstants'
 
+import { saveDiscountCode } from '../actions/cartActions'
+
+import { CART_SAVE_DISCOUNT_CODE } from '../constants/cartConstants'
+
 import axios from 'axios'
 
 
@@ -225,14 +229,19 @@ export const applyDiscount = (name) => async (dispatch) => {
         })
 
 
-        localStorage.setItem('discountCode', JSON.stringify(data))
+        dispatch(saveDiscountCode(data))
+
     } catch (error) {
-        localStorage.removeItem('discountCode')
         dispatch({ 
             type: DISCOUNT_APPLY_FAIL, 
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,
+        })
+
+        dispatch({
+            type:CART_SAVE_DISCOUNT_CODE,
+            payload: { } ,
         })
     }
 }
