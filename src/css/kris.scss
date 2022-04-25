@@ -1,0 +1,195 @@
+@import "bootstrap";
+
+/* ------- customize primary button color -------- */
+$mynewcolor: #f15a22;
+
+.placeOrder {
+  position: relative;
+  align-items: center !important;
+  .btn-primary {
+    @include button-variant(
+      $mynewcolor,
+      darken($mynewcolor, 7.5%),
+      darken($mynewcolor, 10%),
+      lighten($mynewcolor, 5%),
+      lighten($mynewcolor, 10%),
+      darken($mynewcolor, 30%)
+    );
+  }
+
+  .btn-outline-primary {
+    @include button-outline-variant(
+      $mynewcolor,
+      #f15a22,
+      lighten($mynewcolor, 5%),
+      $mynewcolor
+    );
+  }
+  .hole {
+    padding: 100px;
+    margin-top: 80px;
+    background-color: #00294f;
+  }
+  .list-group {
+    .head {
+      color: #f15a22;
+    }
+    color: #00294f;
+    font-weight: 600;
+    border: 0.5px inset;
+  }
+  .list-group-cart {
+    color: #00294f;
+  }
+  Button {
+    color: white !important;
+  }
+}
+
+.ship {
+  $mynewcolor: #00294f;
+  width: 750px;
+  height: auto;
+  background-color: #f15a22;
+  margin-top: 100px;
+  border: solid 70px #00294f;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  color: #00294f;
+
+  .btn-primary {
+    @include button-variant(
+      $mynewcolor,
+      darken($mynewcolor, 7.5%),
+      darken($mynewcolor, 10%),
+      lighten($mynewcolor, 5%),
+      lighten($mynewcolor, 10%),
+      darken($mynewcolor, 30%)
+    );
+  }
+
+  .btn-outline-primary {
+    @include button-outline-variant(
+      $mynewcolor,
+      #f15a22,
+      lighten($mynewcolor, 5%),
+      $mynewcolor
+    );
+  }
+  .inner {
+    width: 300px;
+    height: auto;
+    background-color: #f15a22;
+    margin: 0 auto;
+    position: relative;
+    font-weight: 600;
+    .myBtn {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  Button {
+    color: white !important;
+  }
+}
+.payment {
+  $mynewcolor: #edf0f2;
+  background-color: #f15a22;
+  width: 400px;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  margin-top: 200px;
+  font-weight: 600;
+  border: solid 60px #00294f;
+  .label {
+    text-align: left !important;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .btn-primary {
+    @include button-variant(
+      $mynewcolor,
+      darken($mynewcolor, 7.5%),
+      darken($mynewcolor, 10%),
+      lighten($mynewcolor, 5%),
+      lighten($mynewcolor, 10%),
+      darken($mynewcolor, 30%)
+    );
+  }
+
+  .btn-outline-primary {
+    @include button-outline-variant(
+      $mynewcolor,
+      #f15a22,
+      lighten($mynewcolor, 5%),
+      $mynewcolor
+    );
+  }
+  .myBtn {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  Button {
+    color: #00294f !important;
+    font-weight: 600;
+  }
+  .formL {
+    margin-bottom: 20px;
+  }
+}
+.order {
+  background-color: #00294f;
+  border: solid 60px #00294f;
+  color: #f15a22;
+  margin-top: 100px;
+}
+.sec {
+  color: #00294f;
+  h2 {
+    color: #f15a22;
+  }
+
+  .sumI {
+    color: #00294f;
+  }
+}
+.cart {
+  background-color: #00294f;
+  color: #f15a22;
+  border: solid 60px #00294f;
+  .info {
+    color: #f15a22;
+    margin-top: 10px;
+    .sec {
+      color: #00294f;
+    }
+    Button {
+      color: white !important;
+    }
+    .myBtn {
+      margin-top: 10px;
+    }
+  }
+  .btn-primary {
+    @include button-variant(
+      $mynewcolor,
+      darken($mynewcolor, 7.5%),
+      darken($mynewcolor, 10%),
+      lighten($mynewcolor, 5%),
+      lighten($mynewcolor, 10%),
+      darken($mynewcolor, 30%)
+    );
+  }
+
+  .btn-outline-primary {
+    @include button-outline-variant(
+      $mynewcolor,
+      #f15a22,
+      lighten($mynewcolor, 5%),
+      $mynewcolor
+    );
+  }
+}
