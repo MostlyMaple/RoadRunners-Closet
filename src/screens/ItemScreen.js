@@ -26,7 +26,7 @@ function ItemScreen({ match, history}) {
 
     return (
         <div>
-            <Link to={`/`}>Go Back</Link>
+            <Link to={`/`} style={{textDecoration: 'none', color: '#00294f'}}>Go Back</Link>
             {loading ? 
                 <Loader/>
                 : error 

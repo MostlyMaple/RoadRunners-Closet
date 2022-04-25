@@ -17,18 +17,20 @@ function SearchBox() {
         }
     }
     return (
-        <Form onSubmit={submitHandler} inline>
+        <Form onSubmit={submitHandler} style={{marginRight: '4rem', display: 'flex'}}>
             <Form.Control
                 type='text'
                 name='q'
                 onChange={(e) => setKeyword(e.target.value)}
                 className='mr-sm-2 ml-sm-5'
+                style={{marginRight: '1rem', borderRadius: '10px'}}
             ></Form.Control>
 
             <Button
                 type='submit'
                 variant='outline-success'
-                className='p-2'
+                
+                style={{borderRadius: '10px', border: '#0c2340', backgroundColor: '#00294f', color: 'white', marginRight:'2rem'}}
             >
                 Submit
             </Button>

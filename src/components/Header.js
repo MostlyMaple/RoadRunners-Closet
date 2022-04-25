@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {Navbar, Nav, Container, Row, NavDropdown, Link} from 'react-bootstrap'
+import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
@@ -18,10 +18,13 @@ function Header({history}) {
 
 
     return (
-        <header>
-        <Navbar bg="light" variant="light" expand="lg" collapseOnSelect>
-            <Container>
-                <LinkContainer to='/'>
+        <header >
+        <Navbar bg="light" variant="light" expand="lg" collapseOnSelect >
+            <Container style={{
+                backgroundColor: '#F15A22', height: '70px', borderRadius: '10px', overflow: 'auto', width: '100%'
+                }}
+            >
+                <LinkContainer to='/' style={{marginRight: '6rem'}}>
                     <Navbar.Brand>RoadRunner Closet</Navbar.Brand>
                 </LinkContainer>
 
@@ -30,13 +33,13 @@ function Header({history}) {
                     <SearchBox />
                     <Nav className="ml-auto">
 
-                        <LinkContainer to='/cart'>
+                        <LinkContainer to='/cart' style={{marginRight: '2rem'}}>
                             <Nav.Link ><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
                         </LinkContainer>
 
                         {userInfo ? (
                             <NavDropdown title={userInfo.name} id='username'>
-                                <LinkContainer to='/profile'>
+                                <LinkContainer to='/profile' style={{marginLeft: '2rem'}}>
                                     <NavDropdown.Item>Profile</NavDropdown.Item>
                                 </LinkContainer>
 
@@ -44,7 +47,7 @@ function Header({history}) {
 
                             </NavDropdown>
                         ) : (
-                                <LinkContainer to='/login'>
+                                <LinkContainer to='/login' style={{marginLeft: '4rem'}}>
                                     <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
                                 </LinkContainer>
                             )}

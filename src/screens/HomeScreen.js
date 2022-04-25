@@ -1,12 +1,13 @@
 import React from 'react'
 import {useEffect, useState} from 'react';
-import { Row, Col, Form, Button, Navbar, Nav, Container, NavDropdown, Link } from 'react-bootstrap'
-import FormContainer from '../components/FormContainer'
+import { Row, Col, Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+//import FormContainer from '../components/FormContainer'
 import Item  from '../components/Item';
 import Loader  from '../components/Loader';
 import Message  from '../components/Message';
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions'
+
 
 function HomeScreen({ history }) {
 
@@ -25,7 +26,7 @@ function HomeScreen({ history }) {
 
     return (
         <div>
-            <h1>Latest Products</h1>
+            <h1 style={{justifyContent: 'center'}}>Latest Products</h1>
             <Navbar bg="light" variant="light" expand="lg" collapseOnSelect>
                 <Container>
 
@@ -85,7 +86,6 @@ function HomeScreen({ history }) {
                 ))}
                 </Row>
             )}
-            
         </div>
     )
 }
