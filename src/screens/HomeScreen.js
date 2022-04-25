@@ -1,10 +1,7 @@
 import React from 'react'
 import {useEffect, useState} from 'react';
 import { Row, Col, Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
-<<<<<<< HEAD
-//import FormContainer from '../components/FormContainer'
-=======
->>>>>>> cbef1ba2ac66d2c60ae1437c9aafb601c133ebb3
+import { LinkContainer } from 'react-router-bootstrap'
 import Item  from '../components/Item';
 import Loader  from '../components/Loader';
 import Message  from '../components/Message';
@@ -38,6 +35,36 @@ function HomeScreen({ history }) {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
+
+
+                            <LinkContainer to='/?keyword=shirt' style={{marginRight: '6rem'}}>
+                                <Navbar.Brand>Shirts</Navbar.Brand>
+                            </LinkContainer>
+
+                            <LinkContainer to='/?keyword=pants' style={{marginRight: '6rem'}}>
+                                <Navbar.Brand>Pants</Navbar.Brand>
+                            </LinkContainer>
+
+                            <LinkContainer to='/?keyword=socks' style={{marginRight: '6rem'}}>
+                                <Navbar.Brand>Socks</Navbar.Brand>
+                            </LinkContainer>
+
+                            <LinkContainer to='/?keyword=shoe' style={{marginRight: '6rem'}}>
+                                <Navbar.Brand>Shoes</Navbar.Brand>
+                            </LinkContainer>
+
+                            <LinkContainer to='/?keyword=accessory' style={{marginRight: '6rem'}}>
+                                <Navbar.Brand>Accessories</Navbar.Brand>
+                            </LinkContainer>
+
+                            <LinkContainer to='/?keyword=women' style={{marginRight: '6rem'}}>
+                                <Navbar.Brand>Women</Navbar.Brand>
+                            </LinkContainer>
+
+                            <LinkContainer to='/?keyword=men' style={{marginRight: '6rem'}}>
+                                <Navbar.Brand>Men</Navbar.Brand>
+                            </LinkContainer>
+
                             <NavDropdown title='Sort By' id='username'>
                                 <NavDropdown.Item id='1' onClick={(e) => setSortingMethod('1')}>Price Low to High</NavDropdown.Item>
                                 <NavDropdown.Item id='2' onClick={(e) => setSortingMethod('2')}>Price High to Low</NavDropdown.Item>

@@ -64,7 +64,7 @@ function CartScreen({ match, location, history }) {
               Your cart is empty! <Link to="/">Go Back</Link>
             </Message>
           ) : (
-            <ListGroup variant="flush">
+            <ListGroup>
               {cartItems.map((item) => (
                 <ListGroup.Item key={item.product}>
                   <Row>
@@ -191,14 +191,14 @@ function CartScreen({ match, location, history }) {
                   </h2>
                 )}
                 {success ? (
-                  <h4>
+                  <h2>
                     Discount Code: {discount.name} = %
                     {Number(100) * Number(discount.discount)}
-                  </h4>
+                  </h2>
                 ) : !discount ? (
-                  <h4>Discount Code: {discount}</h4>
+                  <h2>Discount Code: {discount}</h2>
                 ) : (
-                  <h4>Discount Code:</h4>
+                  <h2>Discount Code:</h2>
                 )}
               </ListGroup.Item>
               <ListGroup.Item className="info">
