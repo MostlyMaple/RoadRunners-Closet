@@ -10,7 +10,7 @@ import {
 
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-    const {data} = await axios.get(`/api/get-item/${id}/`)
+    const {data} = await axios.get(`http://35.224.232.15/api/get-item/${id}/`)
 
     dispatch({
         type:CART_ADD_ITEM,
@@ -50,8 +50,6 @@ export const saveDiscountCode = (data) => (dispatch) => {
         type:CART_SAVE_DISCOUNT_CODE,
         payload:data,
     })
-
-    localStorage.setItem('discountCode', JSON.stringify(data))
 }
 
 export const savePaymentMethod = (data) => (dispatch) => {

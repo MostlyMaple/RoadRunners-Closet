@@ -1,7 +1,10 @@
 import React from 'react'
 import {useEffect, useState} from 'react';
 import { Row, Col, Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+<<<<<<< HEAD
 //import FormContainer from '../components/FormContainer'
+=======
+>>>>>>> cbef1ba2ac66d2c60ae1437c9aafb601c133ebb3
 import Item  from '../components/Item';
 import Loader  from '../components/Loader';
 import Message  from '../components/Message';
@@ -18,6 +21,8 @@ function HomeScreen({ history }) {
     let keyword = history.location.search
 
     const [sortingMethod, setSortingMethod] = useState('')
+
+
 
     useEffect(() => {
         dispatch(listProducts(keyword))

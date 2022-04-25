@@ -47,10 +47,10 @@ function ProductEditScreen({match, history}) {
             } else {
                 setName(product.item_name)
                 setPrice(product.price)
-                if (product.image) {
-                    setImage(product.image.replace('/media', ''))
-                } else {
+                if (!product.image) {
                     setImage('/media/640x360.png')
+                } else {
+                    setImage(product.image)
                 }
                 setTopic(product.topic)
                 setStock(product.quantity)
@@ -58,7 +58,7 @@ function ProductEditScreen({match, history}) {
             }
         }
       }
-    }, [product, productId, successUpdate, history, dispatch])
+    }, [product, productId, successUpdate, history, dispatch, userInfo])
 
 
     const uploadFileHandler = async (e) => {
@@ -77,7 +77,7 @@ function ProductEditScreen({match, history}) {
               }
           }
 
-          const { data } = await axios.post('/api/upload/', formData, config)
+          const { data } = await axios.post('http://35.224.232.15/api/upload/', formData, config)
 
 
           setImage(data)

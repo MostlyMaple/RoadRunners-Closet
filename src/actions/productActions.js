@@ -26,7 +26,7 @@ export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
-        const { data } = await axios.get(`/api/get-items/${keyword}`)
+        const { data } = await axios.get(`http://35.224.232.15/api/get-items/${keyword}`)
 
         dispatch({ 
             type: PRODUCT_LIST_SUCCESS, 
@@ -47,7 +47,7 @@ export const listProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/get-item/${id}`)
+        const { data } = await axios.get(`http://35.224.232.15/api/get-item/${id}`)
 
         dispatch({ 
             type: PRODUCT_DETAILS_SUCCESS, 
@@ -83,7 +83,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.delete(
-            `/api/delete-item/${id}/`,
+            `http://35.224.232.15/api/delete-item/${id}/`,
             config
         )
 
@@ -120,7 +120,7 @@ export const createProduct = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(
-            `/api/create-item/`,
+            `http://35.224.232.15/api/create-item/`,
             {},
             config
         )
@@ -159,7 +159,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/api/update-item/${product.id}/`,
+            `http://35.224.232.15/api/update-item/${product.id}/`,
             product,
             config
         )
