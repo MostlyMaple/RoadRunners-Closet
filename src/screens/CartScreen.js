@@ -177,7 +177,6 @@ function CartScreen({ match, location, history }) {
                       cartItems.reduce(
                         (acc, item) =>
                           acc +
-                          item.qty * item.price * 0.0825 +
                           item.qty * item.price,
                         0
                       ) * Number(discount.discount)
@@ -194,7 +193,6 @@ function CartScreen({ match, location, history }) {
                       cartItems.reduce(
                         (acc, item) =>
                           acc +
-                          item.qty * item.price * 0.0825 +
                           item.qty * item.price,
                         0
                       ) *

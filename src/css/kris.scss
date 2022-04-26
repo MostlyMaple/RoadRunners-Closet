@@ -6,6 +6,7 @@ $mynewcolor: #f15a22;
 .placeOrder {
   position: relative;
   align-items: center !important;
+  border-radius: 20px;
   .btn-primary {
     @include button-variant(
       $mynewcolor,
@@ -29,6 +30,8 @@ $mynewcolor: #f15a22;
     padding: 100px;
     margin-top: 80px;
     background-color: #00294f;
+    border-radius: 20px;
+    margin-bottom: 100px;
   }
   .list-group {
     .head {
@@ -151,6 +154,7 @@ $mynewcolor: #f15a22;
 }
 .sec {
   color: #00294f;
+  border-radius: 20px;
   h2 {
     color: #f15a22;
   }

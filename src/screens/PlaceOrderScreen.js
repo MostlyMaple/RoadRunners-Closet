@@ -33,7 +33,7 @@ function PlaceOrderScreen({ history }) {
       Number(cart.discountCode.discount)
     ).toFixed(2);
     cart.taxPrice = (
-      (Number(cart.itemsPrice) - cart.discount) *
+      (Number(cart.itemsPrice)) *
       0.0825
     ).toFixed(2);
     cart.totalPrice = (
@@ -72,8 +72,8 @@ function PlaceOrderScreen({ history }) {
       <CheckoutSteps step1 step2 step3 step4 />
       <Row className="hole">
         <Col md={8}>
-          <ListGroup variant="flush">
-            <ListGroup.Item className="list-group">
+          <ListGroup>
+            <ListGroup.Item>
               <h2 className="head">Shipping</h2>
 
               <p>
@@ -85,7 +85,7 @@ function PlaceOrderScreen({ history }) {
               </p>
             </ListGroup.Item>
 
-            <ListGroup.Item className="list-group">
+            <ListGroup.Item>
               <h2 className="head">Payment Method</h2>
 
               <p>
@@ -94,14 +94,14 @@ function PlaceOrderScreen({ history }) {
               </p>
             </ListGroup.Item>
 
-            <ListGroup.Item className="list-group">
+            <ListGroup.Item>
               <h2 className="head">Order Items</h2>
               {cart.cartItems.length === 0 ? (
                 <Message variant="info">Your cart is empty</Message>
               ) : (
-                <ListGroup variant="flush">
+                <ListGroup>
                   {Array.from(cart.cartItems).map((item, index) => (
-                    <ListGroup.Item key={index} className="list-group">
+                    <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
                           <Image
@@ -130,33 +130,46 @@ function PlaceOrderScreen({ history }) {
         </Col>
         <Col md={4}>
           <Card>
-            <ListGroup variant="flush">
-              <ListGroup.Item className="list-group">
+            <ListGroup>
+              <ListGroup.Item>
                 <h2 className="head">Order Summary</h2>
               </ListGroup.Item>
 
-              <ListGroup.Item className="list-group-cart">
+              <ListGroup.Item>
                 <Row>
                   <Col>Items:</Col>
                   <Col>${cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
-              <ListGroup.Item className="list-group-cart">
+              <ListGroup.Item>
                 <Row>
                   <Col>Shipping:</Col>
                   <Col>${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
 
-              <ListGroup.Item className="list-group-cart">
+              <ListGroup.Item>
                 <Row>
                   <Col>Tax:</Col>
                   <Col>${cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
+              
+              {cart.discountCode.discount && 
+              <ListGroup.Item>
+                                <Row>
+                                    <Col>
+                                    Discount:
+                                    </Col>
+                                    <Col>
+                                    ${cart.discount}
+                                    </Col>
+                                </Row>
+              </ListGroup.Item>
+              }
 
-              <ListGroup.Item className="list-group-cart">
+              <ListGroup.Item>
                 <Row>
                   <Col>Total:</Col>
                   <Col>${cart.totalPrice}</Col>
