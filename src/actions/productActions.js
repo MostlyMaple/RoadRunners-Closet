@@ -26,8 +26,9 @@ export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
-        const { data } = await axios.get(`http://35.224.232.15/api/get-items/${keyword}`)
-
+        //const { data } = await axios.get(`http://35.224.232.15/api/get-items/${keyword}`)
+        const { data } = await axios.get(`http://147.182.178.230:4000/v1/get-items/?id=${id}`) //Added Go Backend Here <-
+        
         dispatch({ 
             type: PRODUCT_LIST_SUCCESS, 
             payload: data,
