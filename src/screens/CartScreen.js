@@ -77,9 +77,15 @@ function CartScreen({ match, location, history }) {
                       />
                     </Col>
                     <Col md={3}>
-                      <Link to={`/product/${item.product}`}>{item.name}</Link>
+                      <Link to={`/product/${item.product}`}>
+                        <h5>
+                          {item.name}
+                        </h5>
+                      </Link>
                     </Col>
-                    <Col md={2}>${item.price}</Col>
+                    <Col md={2}>
+                      <h3>${item.price}</h3>
+                    </Col>
                     <Col md="3">
                       <Form.Control
                         as="select"
@@ -115,30 +121,49 @@ function CartScreen({ match, location, history }) {
 
         <Col md={4}>
           <Card>
-            <ListGroup variant="flush">
-              <ListGroup.Item className="info">
+            <ListGroup variant="flush" className="info">
+              <ListGroup.Item>
                 <h2>
                   ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items
                 </h2>
-                <h2>
-                  Subtotal: $
-                  {cartItems
-                    .reduce((acc, item) => acc + item.qty * item.price, 0)
-                    .toFixed(2)}
-                </h2>
-                <h2>
-                  Tax: $
-                  {cartItems
-                    .reduce(
-                      (acc, item) => acc + item.qty * item.price * 0.0825,
-                      0
-                    )
-                    .toFixed(2)}
-                </h2>
-                {success ? (
+                <Row>
+                  <Col md={6}>
+                      <h2>Subtotal:</h2>
+                  </Col>
+                  <Col md={6}>
+                      <h2>${cartItems
+                      .reduce((acc, item) => acc + item.qty * item.price, 0)
+                      .toFixed(2)}</h2>
+                  </Col>
+                </Row>
+                <Row>
+                    <Col md={6}>
+                        <h2>
+                            Tax:
+                        </h2>
+                    </Col>
+                    <Col md={6}>
+                        <h2>
+                            ${cartItems
+                            .reduce(
+                              (acc, item) => acc + item.qty * item.price * 0.0825,
+                              0
+                            )
+                            .toFixed(2)}
+                        </h2>
+                    </Col>              
+                
+                </Row>
+                <Row>
+                  <Col>
+                      <h2>
+                        Total:
+                      </h2>
+                  </Col>
+                  <Col>
+                  {success ? (
                   <h2>
-                    Total: $
-                    {cartItems
+                    ${cartItems
                       .reduce(
                         (acc, item) =>
                           acc +
@@ -157,8 +182,8 @@ function CartScreen({ match, location, history }) {
                         0
                       ) * Number(discount.discount)
                     ).toFixed(2)}
-                    ={" "}
-                    {(
+                    {" "}
+                    = ${(
                       cartItems.reduce(
                         (acc, item) =>
                           acc +
@@ -178,8 +203,7 @@ function CartScreen({ match, location, history }) {
                   </h2>
                 ) : (
                   <h2>
-                    Total: $
-                    {cartItems
+                    ${cartItems
                       .reduce(
                         (acc, item) =>
                           acc +
@@ -190,6 +214,9 @@ function CartScreen({ match, location, history }) {
                       .toFixed(2)}
                   </h2>
                 )}
+                  </Col>
+                </Row>
+                
                 {success ? (
                   <h2>
                     Discount Code: {discount.name} = %
