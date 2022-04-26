@@ -120,7 +120,7 @@ export const listDiscountDetails = (id) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.get(`http://35.224.232.15/api/get-discount/${id}`, config)
+        const { data } = await axios.get(`http://147.182.178.230:4000/v1/get-discount/?id=${id}`, config)
 
         dispatch({ 
             type: DISCOUNT_DETAILS_SUCCESS, 
@@ -196,7 +196,7 @@ export const listDiscounts = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `http://35.224.232.15/api/get-discounts/`,
+            `http://147.182.178.230:4000/v1/get-discounts/`,
             config
             )
 
