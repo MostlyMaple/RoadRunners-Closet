@@ -36,7 +36,7 @@ function OrderScreen({ match }) {
       <h1>Order: {order.id}</h1>
       <Row>
         <Col md={8}>
-          <ListGroup variant="flush">
+          <ListGroup className="box">
             <ListGroup.Item className="sec">
               <h2>Shipping</h2>
 
@@ -91,8 +91,7 @@ function OrderScreen({ match }) {
           </ListGroup>
         </Col>
         <Col md={4}>
-          <Card>
-            <ListGroup variant="flush" className="sec">
+            <ListGroup className="sec box">
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
@@ -125,7 +124,6 @@ function OrderScreen({ match }) {
                 </Row>
               </ListGroup.Item>
             </ListGroup>
-          </Card>
         </Col>
       </Row>
     </div>

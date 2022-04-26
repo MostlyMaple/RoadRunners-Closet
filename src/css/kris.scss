@@ -151,10 +151,10 @@ $mynewcolor: #f15a22;
   color: #f15a22;
   margin-top: 100px;
   margin-bottom: 100px;
+  border-radius: 20px;
 }
 .sec {
   color: #00294f;
-  border-radius: 20px;
   h2 {
     color: #f15a22;
   }
@@ -162,6 +162,9 @@ $mynewcolor: #f15a22;
   .sumI {
     color: #00294f;
   }
+}
+.box {
+  border-radius: 20px;
 }
 .cart {
   background-color: #00294f;
