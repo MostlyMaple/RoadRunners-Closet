@@ -239,14 +239,12 @@ export const updateOrderShipped = (id) => async (dispatch, getState) => {
                 payload: data,
             })
         } catch (error) {
-
+            dispatch({
+                type: ORDER_UPDATE_FAIL,
+                payload: error.response && error.response.data.detail
+                    ? error.response.data.detail
+                    : error.message,
+            })
         }
-
-        dispatch({
-            type: ORDER_UPDATE_FAIL,
-            payload: error.response && error.response.data.detail
-                ? error.response.data.detail
-                : error.message,
-        })
     }
 }
