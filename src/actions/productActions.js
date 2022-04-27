@@ -46,9 +46,8 @@ export const listProducts = (keyword = '') => async (dispatch) => {
 export const listProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
-
-        const { data } = await axios.get(`http://35.224.232.15/api/get-item/${id}`)
-        //const { data } = await axios.get(`http://147.182.178.230:4000/v1/get-items/?id=${id}`) //go backend
+        
+        const { data } = await axios.get(`http://147.182.178.230:4000/v1/get-items/?id=${id}`) //go backend
 
         dispatch({ 
             type: PRODUCT_DETAILS_SUCCESS, 
@@ -56,12 +55,22 @@ export const listProductDetails = (id) => async (dispatch) => {
         })
 
     } catch (error) {
-        dispatch({ 
-            type: PRODUCT_DETAILS_FAIL, 
-            payload: error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message,
-        })
+        try {
+            const { data } = await axios.get(`http://35.224.232.15/api/get-item/${id}`)
+
+            dispatch({ 
+                type: PRODUCT_DETAILS_SUCCESS, 
+                payload: data
+            })
+            
+        } catch (error) {
+            dispatch({ 
+                type: PRODUCT_DETAILS_FAIL, 
+                payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+            })
+        }
     }
 }
 

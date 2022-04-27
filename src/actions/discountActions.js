@@ -129,12 +129,35 @@ export const listDiscountDetails = (id) => async (dispatch, getState) => {
         })
 
     } catch (error) {
-        dispatch({ 
-            type: DISCOUNT_DETAILS_FAIL, 
-            payload: error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message,
-        })
+
+        try {
+
+            const { 
+                userLogin: { userInfo },
+             } = getState()
+    
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`,
+                }
+            }
+
+            const { data } = await axios.get(`http://35.224.232.15/api/get-discount/${id}`, config)
+
+            dispatch({ 
+                type: DISCOUNT_DETAILS_SUCCESS, 
+                payload: data
+            })
+        } catch (error) {
+            dispatch({ 
+                type: DISCOUNT_DETAILS_FAIL, 
+                payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+            })
+        }
+        
     }
 }
 
@@ -207,12 +230,35 @@ export const listDiscounts = () => async (dispatch, getState) => {
         })
 
     } catch (error) {
-        dispatch({ 
-            type: DISCOUNT_LIST_FAIL, 
-            payload: error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message,
-        })
+        try {
+            const { 
+                userLogin: { userInfo },
+             } = getState()
+    
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`,
+                }
+            }
+    
+            const { data } = await axios.get(
+                `http://35.224.232.15/api/get-discounts/`,
+                config
+                )
+    
+            dispatch({ 
+                type: DISCOUNT_LIST_SUCCESS, 
+                payload: data,
+            })
+        } catch (error) {
+            dispatch({ 
+                type: DISCOUNT_LIST_FAIL, 
+                payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+            })
+        }
     }
 }
 

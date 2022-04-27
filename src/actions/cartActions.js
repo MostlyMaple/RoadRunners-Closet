@@ -10,19 +10,42 @@ import {
 
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-    const {data} = await axios.get(`http://35.224.232.15/api/get-item/${id}/`)
-    //const { data } = await axios.get(`http://147.182.178.230:4000/v1/get-items/?id=${id}`)
-    dispatch({
-        type:CART_ADD_ITEM,
-        payload:{
-            product:data.id,
-            name:data.item_name,
-            image:data.image,
-            price:data.price,
-            stock:data.quantity,
-            qty
+
+    try {
+        const { data } = await axios.get(`http://147.182.178.230:4000/v1/get-items/?id=${id}`)
+
+        dispatch({
+            type:CART_ADD_ITEM,
+            payload:{
+                product:data.id,
+                name:data.item_name,
+                image:data.image,
+                price:data.price,
+                stock:data.quantity,
+                qty
+            }
+        })
+    } catch (error) {
+        try {
+            const {data} = await axios.get(`http://35.224.232.15/api/get-item/${id}/`)
+
+            dispatch({
+                type:CART_ADD_ITEM,
+                payload:{
+                    product:data.id,
+                    name:data.item_name,
+                    image:data.image,
+                    price:data.price,
+                    stock:data.quantity,
+                    qty
+                }
+            })
+        } catch (error) {
+
         }
-    })
+    }
+
+    
 
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
