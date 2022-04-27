@@ -208,7 +208,8 @@ export const updateOrderShipped = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `http://35.224.232.15/api/orders/update/${id}/`,
+           // `http://35.224.232.15/api/orders/update/${id}/`,
+            `http://147.182.178.230:4000/v1/order/updateShipping/?id={id}`,
             config
         )
 
