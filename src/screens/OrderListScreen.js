@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from "react-router-bootstrap";
 import Loader  from '../components/Loader';
 import Message  from '../components/Message';
-import { listAllOrders } from '../actions/orderActions'
+import { listAllOrders, updateOrderShipped } from '../actions/orderActions'
 
 function OrderListScreen({ history }) {
     const dispatch = useDispatch()
@@ -16,6 +16,9 @@ function OrderListScreen({ history }) {
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
+    const updateOrder = useSelector(state => state.updateOrder)
+    const {orders: update} = updateOrder
+
     const [sortingMethod, setSortingMethod] = useState('')
 
     useEffect(() => {
@@ -24,9 +27,18 @@ function OrderListScreen({ history }) {
         } else {
             history.push('/login')
         }
-        
-    }, [dispatch, history, userInfo])
 
+        if (update) {
+            dispatch(listAllOrders())
+        }
+
+        
+    }, [dispatch, history, userInfo, update])
+
+
+    const updateOrderHandler = (id) => {
+        dispatch(updateOrderShipped(id))
+    }
 
     return (
         <div>
@@ -70,6 +82,9 @@ function OrderListScreen({ history }) {
                                 TOTAL
                             </th>
                             <th>
+                                SHIPPED
+                            </th>
+                            <th>
                                 DETAILS
                             </th>
                         </tr>
@@ -89,6 +104,13 @@ function OrderListScreen({ history }) {
                                     </td>
                                     <td>
                                         {order.totalPrice}
+                                    </td>
+                                    <td>
+                                    {order.isShipped ? (
+                                        <i className='fas fa-check' style={{color: 'green'}}></i>
+                                    ) : (
+                                        <i className='fas fa-x' style={{color: 'red'}}></i>
+                                    )}
                                     </td>
     
                                     <td>
@@ -113,6 +135,13 @@ function OrderListScreen({ history }) {
                                     <td>
                                         {order.totalPrice}
                                     </td>
+                                    <td>
+                                    {order.isShipped ? (
+                                        <i className='fas fa-check' style={{color: 'green'}}></i>
+                                    ) : (
+                                        <i className='fas fa-x' style={{color: 'red'}}></i>
+                                    )}
+                                    </td>
     
                                     <td>
                                     <LinkContainer to={`/order/${order.id}`}>
@@ -135,6 +164,13 @@ function OrderListScreen({ history }) {
                                     </td>
                                     <td>
                                         {order.totalPrice}
+                                    </td>
+                                    <td>
+                                    {order.isShipped ? (
+                                        <i className='fas fa-check' style={{color: 'green'}}></i>
+                                    ) : (
+                                        <i className='fas fa-x' style={{color: 'red'}}></i>
+                                    )}
                                     </td>
     
                                     <td>
@@ -159,6 +195,13 @@ function OrderListScreen({ history }) {
                                     <td>
                                         {order.totalPrice}
                                     </td>
+                                    <td>
+                                    {order.isShipped ? (
+                                        <i className='fas fa-check' style={{color: 'green'}}></i>
+                                    ) : (
+                                        <i className='fas fa-x' style={{color: 'red'}}></i>
+                                    )}
+                                    </td>
     
                                     <td>
                                     <LinkContainer to={`/order/${order.id}`}>
@@ -181,6 +224,13 @@ function OrderListScreen({ history }) {
                                     </td>
                                     <td>
                                         {order.totalPrice}
+                                    </td>
+                                    <td>
+                                    {order.isShipped ? (
+                                        <i className='fas fa-check' style={{color: 'green'}}></i>
+                                    ) : (
+                                        <i className='fas fa-x' style={{color: 'red'}}></i>
+                                    )}
                                     </td>
     
                                     <td>
@@ -205,6 +255,13 @@ function OrderListScreen({ history }) {
                                     <td>
                                         {order.totalPrice}
                                     </td>
+                                    <td>
+                                    {order.isShipped ? (
+                                        <i className='fas fa-check' style={{color: 'green'}}></i>
+                                    ) : (
+                                        <i className='fas fa-x' style={{color: 'red'}}></i>
+                                    )}
+                                    </td>
     
                                     <td>
                                     <LinkContainer to={`/order/${order.id}`}>
@@ -228,11 +285,19 @@ function OrderListScreen({ history }) {
                                     <td>
                                         {order.totalPrice}
                                     </td>
+                                    <td>
+                                    {order.isShipped ? (
+                                        <i className='fas fa-check' style={{color: 'green'}}></i>
+                                    ) : (
+                                        <i className='fas fa-x' style={{color: 'red'}}></i>
+                                    )}
+                                    </td>
     
                                     <td>
                                     <LinkContainer to={`/order/${order.id}`}>
                                             <Button className='btn-sm'>Details</Button>
                                     </LinkContainer>
+                                    <Button className='btn-sm' onClick={() => updateOrderHandler(order.id)}>Shipped</Button>
                                     </td>
                                 </tr>
                             ))

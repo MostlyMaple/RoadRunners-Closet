@@ -93,6 +93,7 @@ export const deleteDiscount = (id) => async (dispatch, getState) => {
 
         dispatch({
             type: DISCOUNT_DELETE_SUCCESS,
+            payload: data
         })
 
     } catch (error) {

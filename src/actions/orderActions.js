@@ -15,6 +15,10 @@ import {
     ORDER_LIST_ALL_SUCCESS, 
     ORDER_LIST_ALL_FAIL, 
     ORDER_LIST_ALL_REQUEST,
+
+    ORDER_UPDATE_SUCCESS, 
+    ORDER_UPDATE_FAIL, 
+    ORDER_UPDATE_REQUEST,
 } from '../constants/orderConstants'
 import { DISCOUNT_APPLY_RESET } from '../constants/discountConstants'
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
@@ -177,6 +181,45 @@ export const listAllOrders = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: ORDER_LIST_ALL_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+}
+
+
+
+export const updateOrderShipped = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: ORDER_UPDATE_REQUEST
+        })
+
+        const { 
+            userLogin: { userInfo },
+         } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+
+        const { data } = await axios.get(
+            `http://35.224.232.15/api/orders/update/${id}/`,
+            config
+        )
+
+        dispatch({
+            type: ORDER_UPDATE_SUCCESS,
+            payload: data,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ORDER_UPDATE_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
