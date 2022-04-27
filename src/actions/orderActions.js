@@ -208,17 +208,40 @@ export const updateOrderShipped = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-           // `http://35.224.232.15/api/orders/update/${id}/`,
             `http://147.182.178.230:4000/v1/order/updateShipping/?id={id}`,
             config
         )
-
         dispatch({
             type: ORDER_UPDATE_SUCCESS,
             payload: data,
         })
 
     } catch (error) {
+
+        try {
+            const { 
+                userLogin: { userInfo },
+             } = getState()
+    
+            const config = {
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${userInfo.token}`,
+                }
+            }
+    
+            const { data } = await axios.get(
+               `http://35.224.232.15/api/orders/update/${id}/`,
+                config
+            )
+            dispatch({
+                type: ORDER_UPDATE_SUCCESS,
+                payload: data,
+            })
+        } catch (error) {
+
+        }
+
         dispatch({
             type: ORDER_UPDATE_FAIL,
             payload: error.response && error.response.data.detail

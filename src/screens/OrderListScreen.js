@@ -117,6 +117,7 @@ function OrderListScreen({ history }) {
                                     <LinkContainer to={`/order/${order.id}`}>
                                             <Button className='btn-sm'>Details</Button>
                                     </LinkContainer>
+                                    <Button className='btn-sm' onClick={() => updateOrderHandler(order.id)}>Shipped</Button>
                                     </td>
                                 </tr>
                             ))
@@ -147,6 +148,7 @@ function OrderListScreen({ history }) {
                                     <LinkContainer to={`/order/${order.id}`}>
                                             <Button className='btn-sm'>Details</Button>
                                     </LinkContainer>
+                                    <Button className='btn-sm' onClick={() => updateOrderHandler(order.id)}>Shipped</Button>
                                     </td>
                                 </tr>
                             ))
@@ -174,9 +176,12 @@ function OrderListScreen({ history }) {
                                     </td>
     
                                     <td>
+                                    <td>
                                     <LinkContainer to={`/order/${order.id}`}>
                                             <Button className='btn-sm'>Details</Button>
                                     </LinkContainer>
+                                    <Button className='btn-sm' onClick={() => updateOrderHandler(order.id)}>Shipped</Button>
+                                    </td>
                                     </td>
                                 </tr>
                             ))
@@ -207,6 +212,7 @@ function OrderListScreen({ history }) {
                                     <LinkContainer to={`/order/${order.id}`}>
                                             <Button className='btn-sm'>Details</Button>
                                     </LinkContainer>
+                                    <Button className='btn-sm' onClick={() => updateOrderHandler(order.id)}>Shipped</Button>
                                     </td>
                                 </tr>
                             ))
@@ -237,6 +243,7 @@ function OrderListScreen({ history }) {
                                     <LinkContainer to={`/order/${order.id}`}>
                                             <Button className='btn-sm'>Details</Button>
                                     </LinkContainer>
+                                    <Button className='btn-sm' onClick={() => updateOrderHandler(order.id)}>Shipped</Button>
                                     </td>
                                 </tr>
                             ))
@@ -267,6 +274,7 @@ function OrderListScreen({ history }) {
                                     <LinkContainer to={`/order/${order.id}`}>
                                             <Button className='btn-sm'>Details</Button>
                                     </LinkContainer>
+                                    <Button className='btn-sm' onClick={() => updateOrderHandler(order.id)}>Shipped</Button>
                                     </td>
                                 </tr>
                             ))
