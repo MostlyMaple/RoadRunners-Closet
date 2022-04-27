@@ -61,7 +61,7 @@ function HomeScreen({ history }) {
                                 <Navbar.Brand>Women</Navbar.Brand>
                             </LinkContainer>
 
-                            <LinkContainer to='/?keyword=men' style={{marginRight: '6rem'}}>
+                            <LinkContainer to='/?keyword=mens' style={{marginRight: '6rem'}}>
                                 <Navbar.Brand>Men</Navbar.Brand>
                             </LinkContainer>
 
